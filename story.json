@@ -1,0 +1,183 @@
+{
+  "beginning": {
+    "message": "Hello! What's your name, adventurer?",
+    "expect": {
+      "type": "input",
+      "options": ["Confirm"],
+      "var_name": "username"
+    },
+    "response": {
+      "text": [
+         "Hi $username ...!"
+      ],
+      "options": [". . ."]
+    },
+    "next": ["greeting"]
+  },
+
+  "greeting": {
+    "message": "Are you brave enough to join us exploring this haunted town?",
+    "expect": {
+      "type": "yesno",
+      "options": ["Totally!", "No, not really"]
+    },
+    "response": {
+      "text": [
+         "You're coming with us? That is amazing, we need every help we can get!\nBut let us tell you the whole story so that you know in what you engage.",
+         "You're not coming with us? What a petty..."
+      ],
+      "options": ["Ok", "Ok"]
+    },
+    "next": ["story_1", "end1"]
+  },
+
+  "story_1": {
+    "message": "A few miles away,\nbehind a huge wall out of undestroyable iron and concrete,\nis the most dangerous and frightening place you'll ever see.\nOnce, many, many years ago the town had the euphonious name Therondia.\nThe people living there where called 'the happy people', because of the prevailing satisfied and sunshiny atmosphere.\nInhabitants of the sorrounding areas, envied people living in this town for the friendliness\nbetween the citizens and the completely safe neighborhoods\nnothing bad had ever happened in Therondia.\nEverybody thought of it as the perfect place to spend their life.\n...\nBut then it happened...... and everything changed.\n\nDo you still want to hear the whole story? You might change your mind after hearing it...",
+    "expect": {
+        "type": "yesno",
+        "options": ["Yes", "No"]
+    },
+    "response": {
+      "text": [
+        "So you seem to be one of the fearless ones...\nFine. Here's the end of the tragedy:\nOne day the little daughter of the mayor got missing.\nNobody could imagine what could've happened to her, the girl was a good kid who would've never ran away.\nMoreover there was no ransom demand or anything similar that could've indicated a kidnap. The whole town was searching for her for 3 whole months.\nBut then one day, all of a sudden, she came home to the front door as if nothing had ever happened. She was completly unharmed and at first showed no signs of mental problems, except that she couldn't remember anyhting from the last quarter of the year.\nThe little girl went back to school just one day after beeing back home and everything seemed normal until some kids in the class of the little girl got sick.\nFrom one day to another, they lost their ability to speak. In addition, they had anxiety attacks and always their face was contorted with pain. No doctor knew what to do...\nAt first many children fell ill, but when the first parent fell sick, everyone knew, that it was a matter of time when the whole town would be infected. Panic broke out. Parents needed to decide - stay with their infected children or leave before it was too late. Many people left. But some stayed...\nAnd they still 'live' there. But they became something similar to zombies. Until now, they couldn't leave because of the wall the fled inhabitants built around their hometown, but it's getting ramsackle...\nWe need to get in and find the cause for the virus or whatever it may be, before they break out and infect all the adjoining villages.", "I understand, let's just get in there and try to get out alive."
+      ],
+      "options": ["Ok!", "Let's go!"]
+    },
+    "next": ["still_in", "fight_story"]
+  },
+
+  "still_in": {
+    "message": "Do you still want to join us?",
+    "expect": {
+        "type": "yesno",
+        "options": ["Sure!", "No, I'm too scared..."]
+      },
+    "next": ["fight_story", "end1"]
+  },
+
+  "end1": {
+    "message": "I totally understand you! Hopefully we will be able to do this on our own...",
+    "expect": {
+      "type": "ok",
+      "options": ["Bye"]
+    },
+    "func": {
+      "name": "end"
+    }
+  },
+
+  "end2": {
+    "message": "Ok, goodbye!",
+    "expect": {
+      "type": "ok",
+      "options": ["Bye"]
+    },
+    "func": {
+      "name": "end"
+    }
+  },
+
+  "fight_story": {
+    "message": "The only way to get into the city is to climb the wall with our special equipment.\nThere is still one problem we would have to deal with if we made it to the other side of it:\nIf anyone sees us, they will fight us. We have to be prepared for a battle.\nWe are five people, they will be max. 10. We can overcome them if we hit 5 of them quickly. Let's go!",
+    "expect": {
+      "type": "ok",
+      "options": [". . ."]
+    },
+    "func": {
+        "name": "fight",
+        "next_index": 0
+    },
+    "response": {
+      "text": ["Puhhh... We did it without drawing any attention towards us. Good Job!","*scream from the streets of the haunted town* LOOOOK INTRUDERS!!!"],
+      "options": [". . .", "Ok"]
+    },
+    "next": ["find_the_girl", "fight_1"]
+  },
+
+  "fight_1": {
+    "message": "oh sh**! We have to fight ...\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n                         Fighting...                        \nYOU MUST HIT MORE OFTEN THAN YOUR ENEMIES TO WIN THIS FIGHT \n    IF THE ZOMBIES HIT MORE OFTEN THAN YOU, YOU WILL DIE    \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+    "expect": {
+        "type": "ok",
+        "options": ["FIGHT!"]
+    },
+    "func": {
+        "name": "fight_1",
+        "next_index": 0
+    },
+    "response": {
+      "text": ["You hit $humans times \nThe zombies hit $zombies times\nYou won the fight!\nThat was amazing! But we have no to time to rest on our success, let's go on.","You hit $humans times \nThe zombies hit $zombies times\nThe Zombies have dealt more damage than you!\nYou can't make it out alive... You die a heroic death...."],
+      "options": ["Let's go!", "Play Again"]
+    },
+    "next": ["find_the_girl","beginning"]
+  },
+
+  "find_the_girl": {
+    "message": "We need to find the girl. She is the key to everything that happended here. If we can find out what turned her to what ever she might be now, we might find the cause and can save our families...\nWe assume the girl to be around either her school, her home or the church of the town. You can decide, where should be head?",
+    "expect": {
+      "type": "abc",
+      "options": ["Let's go to her home!", "Let's go to her school!", "Let's go to church!"]
+    },
+    "next": ["home","school","church"]
+  },
+
+  "find_the_girl_2": {
+    "message": "Well... At least now we know where she's not.\nWhere yould we search next?",
+    "expect": {
+      "type": "abc",
+      "options": ["Let's go to her home!", "Let's go to her school!", "Let's go to church!"]
+    },
+    "next": ["home","school","church"]
+  },
+
+  "church": {
+    "message": "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n         ...  YOU GO TO THE CHURCH ...                \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n*whispering* Wow... this is an amazing building!... But pretty scary as well...\nLOOK! There she is... At the confessional...\n\n . . . \nNow that we know what happened to her, we can go home and carry on research for couring sickened people. And when we find a remedy, we'll come back and try to bring this town the peace it once held.\n... to be continued,extended and improved...\n Do you want to play again?",
+    "expect": {
+      "type": "yesno",
+      "options": ["Yes, please!", "No thank you..."]
+    },
+    "next": ["beginning","end1"]
+  },
+
+  "home": {
+    "message": "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    ...  YOU GO TO THE FAMILIES HOME  ...             \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n Hmmmmm... Let's split up, so if she's here, we can find her faster. But be careful that her parents do not see you!",
+    "expect": {
+      "type": "ok",
+      "options": ["Let's search!"]
+    },
+    "func": {
+        "name": "search_home",
+        "next_index": 0
+    },
+    "response": {
+      "text": ["HERE SHE IS!!!\n\n. . .\nNow that we know what happened to her, we can go home and carry on research for couring sickened people. And when we find a remedy, we'll come back and try to bring this town the peace it once held.\n... to be continued,extended and improved...", "Hmm...I think there is nobody around..."],
+      "options": [". . .", "Search somewhere else!"]
+    },
+    "next": ["play_again","find_the_girl_2"]
+  },
+
+  "school": {
+    "message": "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n         ...  YOU GO TO THE SCHOOL  ...               \n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n Hmmmmm... Let's split up, so if she's here, we can find her faster. But be careful that her parents do not see you!",
+    "expect": {
+      "type": "ok",
+      "options": ["Let's search!"]
+    },
+    "func": {
+        "name": "search_home",
+        "next_index": 0
+    },
+    "response": {
+      "text": ["HERE SHE IS!!!\n\n. . .\nNow that we know what happened to her, we can go home and carry on research for couring sickened people. And when we find a remedy, we'll come back and try to bring this town the peace it once held.\n... to be continued,extended and improved", "Hmm...I think there is nobody around..."],
+      "options": ["...", "Search somewhere else!"]
+    },
+    "next": ["play_again","find_the_girl_2"]
+  },
+
+  "play_again": {
+    "message": "Do you want to play again?",
+    "expect": {
+      "type": "yesno",
+      "options": ["Yes, sure!","No, that was enough for me"]
+    },
+    "next": ["beginning","end1"]
+  }
+}
